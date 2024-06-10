@@ -1,4 +1,5 @@
 using EArsivPortal.Data;
+using EArsivPortal.Models;
 using EArsivPortal.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddErrorDescriber<CustomIdentityValidator>()
     .AddDefaultUI()
     .AddDefaultTokenProviders();
 builder.Services.AddScoped<IFileService, FileService>();
