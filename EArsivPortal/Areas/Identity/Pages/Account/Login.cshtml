@@ -4,13 +4,32 @@
 @{
     ViewData["Title"] = "Giriş Yap";
 }
+<style>
+    .btn{
+        background-color: #00937C;
+        color:white !important;
+    }
 
-<h1>@ViewData["Title"]</h1>
+    .title{
+        color: #00937C;
+    }
+    .btn:hover{
+            background-color: #02BDA8 !important;
+    }
+    a{
+        color: #00937C;
+    }
+    a:hover{
+            color: #02BDA8;
+        }
+</style>
+
+<h1 class="title">@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-5">
         <section>
             <form id="account" method="post">
-                <h3>E-Arşiv Portal Geliştirme Giriş Ekranı</h3>
+                <h3 class="title">E-Arşiv Portal Geliştirme Giriş Ekranı</h3>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
@@ -29,9 +48,15 @@
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 mb-4 btn btn-lg btn-primary">Giriş Yap</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button id="login-submit" type="submit" class="btn mb-4 w-100 h-80">Giriş Yap</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button id="suggest-user" type="button" class="btn mb-4 w-100 h-80">Kullanıcı Öner</button>
+                    </div>
                 </div>
+
                 <div>
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Şifreni mi unuttun?</a>
@@ -48,7 +73,7 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h3>Açıklama</h3>
+            <h3 class="title">Açıklama</h3>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -81,4 +106,10 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("suggest-user").addEventListener("click", function () {
+            document.getElementById("Input_Email").value = "test@example.com";
+            document.getElementById("Input_Password").value = "Test.123";
+        });
+    </script>
 }

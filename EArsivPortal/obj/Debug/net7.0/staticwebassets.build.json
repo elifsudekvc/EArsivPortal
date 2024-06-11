@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kyEa7bkGodQjMQ3rFpm4oQ7CxhQtI3NWs8wOqNIcqRY=",
+  "Hash": "HZnuzq3IEB7h5iNg7XhVF2Vtzb3/saFQJ3D5ZMj+Pp8=",
   "Source": "EArsivPortal",
   "BasePath": "_content/EArsivPortal",
   "Mode": "Default",
@@ -2371,6 +2371,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\9da8ee7c-9bab-4cf9-b4d2-eaddd1b37885.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\EArsivLogo.png",
+      "SourceId": "EArsivPortal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\",
+      "BasePath": "_content/EArsivPortal",
+      "RelativePath": "Uploads/EArsivLogo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\EArsivLogo.png"
     }
   ]
 }

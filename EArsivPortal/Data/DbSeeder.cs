@@ -7,13 +7,14 @@ namespace EArsivPortal.Data
     {
         public static async Task SeedRolesAndAdminAsync(IServiceProvider service)
         {
-            //Seed Roles
+            //Roller
             var userManager = service.GetService<UserManager<ApplicationUser>>();
             var roleManager = service.GetService<RoleManager<IdentityRole>>();
             await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Roles.User.ToString()));
+            await roleManager.CreateAsync(new IdentityRole(Roles.Test.ToString()));
 
-            // creating admin
+            //Admin Oluşturma
 
             var user = new ApplicationUser
             {
@@ -29,6 +30,25 @@ namespace EArsivPortal.Data
                 await userManager.CreateAsync(user, "Admin.123");
                 await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
             }
+
+            //test oluşturma
+            var test = new ApplicationUser
+            {
+                UserName = "test@example.com",
+                Email = "test@example.com",
+                Name = "Test",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true
+            };
+
+            var testInDb = await userManager.FindByEmailAsync(test.Email);
+            if (testInDb == null)
+            {
+                await userManager.CreateAsync(test, "Test.123");
+                await userManager.AddToRoleAsync(test, Roles.Test.ToString());
+            }
+
+
         }
 
     }

@@ -4,12 +4,35 @@
     ViewData["Title"] = "Kayıt Ol";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="title">@ViewData["Title"]</h1>
+
+<style>
+    .btn {
+        background-color: #00937C;
+        color: white !important;
+    }
+
+    .title {
+        color: #00937C;
+    }
+
+    .btn:hover {
+        background-color: #02BDA8 !important;
+    }
+
+    a {
+        color: #00937C;
+    }
+
+        a:hover {
+            color: #02BDA8;
+        }
+</style>
 
 <div class="row">
     <div class="col-md-5">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h3>Yeni Kullanıcı Olarak Kaydolun.</h3>
+            <h3 class="title">Yeni Kullanıcı Olarak Kaydolun.</h3>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
@@ -36,6 +59,39 @@
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mb-3">Giriş Yap.</button>
         </form>
+    </div>
+
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h3 class="title">Açıklama</h3>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <h6> e-Arşiv Portalı hakkında fikir vermek amacı ile oluşturulan Test Uygulamasına giriş yapmak için; </h6>
+                        <p> <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">1) Giriş yap sayfasına gidin.</a> </p>
+                        <p>  2) Kullanıcı Öner butonuna tıklayın. </p>
+                        <p>  3) Örnek bir Kullanıcı Adı ve Şifre'nin oluşturulmasını bekleyin. </p>
+                        <p>  4) Giriş butonuna tıklayarak sisteme giriş yapın. </p>
+
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
     </div>
 
 </div>
