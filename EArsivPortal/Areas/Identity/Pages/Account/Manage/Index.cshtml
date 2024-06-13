@@ -1,9 +1,31 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Profil";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
+<style>
+    .btnSave {
+        background-color: #00937C;
+        color: white !important;
+    }
+
+    .title {
+        color: #00937C;
+    }
+
+    .btnSave:hover {
+        background-color: #02BDA8 !important;
+    }
+
+    a {
+        color: #00937C;
+    }
+
+        a:hover {
+            color: #02BDA8;
+        }
+</style>
 
 <h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
@@ -33,11 +55,11 @@
             </div>
 
             <div class="mb-2">
-                <label class="form-label" for="ProfilePicture">Profile Picture</label>
+                <label class="form-label" for="ProfilePicture">Profil Fotoğrafı</label>
                 <input asp-for="Input.ImageFile" />
             </div>
 
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btnSave btn-primary">Kaydet</button>
         </form>
     </div>
 </div>

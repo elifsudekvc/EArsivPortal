@@ -2,9 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\EArsivPortal",
+    "\\EArsivPortal\\Data",
+    "\\EArsivPortal\\Models",
     "\\EArsivPortal\\Views",
-    "\\EArsivPortal\\Views\\Home"
+    "\\EArsivPortal\\Views\\Home",
+    "\\EArsivPortal\\Views\\Shared"
   ],
-  "SelectedNode": "\\EArsivPortal\\Program.cs",
+  "SelectedNode": "\\EArsivPortal.sln",
   "PreviewInSolutionExplorer": false
 }

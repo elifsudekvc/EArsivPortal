@@ -11,7 +11,8 @@
         .navbar {
             background-color: #28434C !important;
         }
-        .nav-link{
+
+        .navbarLink {
             color:white !important;
             margin-right:1rem;
             font-size:1.4rem !important;
@@ -25,7 +26,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                <a class="navbar-brand navbarLink nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                     <img class="logo" src="~/Uploads/EArsivLogo.png"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -36,10 +37,10 @@
                     {
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link navbarLink text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                <a class="nav-link navbarLink text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
                         </ul>
                     }

@@ -70,7 +70,7 @@ namespace EArsivPortal.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Yeni Email")]
             public string NewEmail { get; set; }
         }
 
