@@ -21,3 +21,22 @@ body {
   margin-bottom: 60px;
 }
 
+.yesil {
+    background-color: #00937C !important;
+    color: white !important;
+}
+    .yesil:hover {
+        background-color: #02BDA8 !important;
+    }
+
+.title {
+    color: #00937C;
+}
+
+a {
+    color: #00937C;
+}
+
+    a:hover {
+        color: #02BDA8;
+    }

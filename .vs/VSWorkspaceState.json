@@ -2,12 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\EArsivPortal",
-    "\\EArsivPortal\\Data",
-    "\\EArsivPortal\\Models",
+    "\\EArsivPortal\\Areas",
+    "\\EArsivPortal\\Areas\\Identity",
+    "\\EArsivPortal\\Areas\\Identity\\Pages",
+    "\\EArsivPortal\\Areas\\Identity\\Pages\\Account",
+    "\\EArsivPortal\\Areas\\Identity\\Pages\\Account\\Manage",
     "\\EArsivPortal\\Views",
     "\\EArsivPortal\\Views\\Home",
     "\\EArsivPortal\\Views\\Shared"
   ],
-  "SelectedNode": "\\EArsivPortal.sln",
+  "SelectedNode": "\\EArsivPortal\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
   "PreviewInSolutionExplorer": false
 }

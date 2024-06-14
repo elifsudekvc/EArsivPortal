@@ -1,6 +1,7 @@
 using EArsivPortal.Data;
 using EArsivPortal.Models;
 using EArsivPortal.Services;
+using EArsivPortal.Services.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultUI()
     .AddDefaultTokenProviders();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
