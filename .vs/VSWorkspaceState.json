@@ -7,10 +7,12 @@
     "\\EArsivPortal\\Areas\\Identity\\Pages",
     "\\EArsivPortal\\Areas\\Identity\\Pages\\Account",
     "\\EArsivPortal\\Areas\\Identity\\Pages\\Account\\Manage",
+    "\\EArsivPortal\\Controllers",
+    "\\EArsivPortal\\Data",
     "\\EArsivPortal\\Views",
     "\\EArsivPortal\\Views\\Home",
     "\\EArsivPortal\\Views\\Shared"
   ],
-  "SelectedNode": "\\EArsivPortal\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+  "SelectedNode": "\\EArsivPortal\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

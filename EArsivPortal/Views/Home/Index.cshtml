@@ -1,8 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Belgeler";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <h2>Belge Listesi</h2>
+    <table class="table table-bordered" id="belgeTable">
+        <thead>
+            <tr>
+                <th>Belge Numarası</th>
+                <th>VKN/TCKN</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Düzenleme Tarihi</th>
+                <th>Fatura Tipi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Veriler burada görüntülenecek -->
+        </tbody>
+    </table>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "https://localhost:7087/api/BelgelerApi",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var belgeTable = $("#belgeTable tbody");
+                belgeTable.empty();
+                data.forEach(function (belge) {
+                    console.log(belge);
+                    var belgeDuzenlemeTarihi = new Date(belge.belgeDuzenlemeTarihi);
+                    var formattedDate = belgeDuzenlemeTarihi.toLocaleDateString('tr-TR');
+                    var formattedTime = belgeDuzenlemeTarihi.toLocaleTimeString('tr-TR', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    var row = "<tr>" +
+                        "<td>" + belge.belgeNumarasi + "</td>" +
+                        "<td>" + belge.vknTckn + "</td>" +
+                        "<td>" + belge.ad + "</td>" +
+                        "<td>" + belge.soyad + "</td>" +
+                        "<td>" + formattedDate + "</td>" +
+                        "<td>" + (belge.faturaTipi ? belge.faturaTipi.tip : '') + "</td>" +
+                        "</tr>";
+                    belgeTable.append(row);
+                });
+            },
+            error: function (error) {
+                console.error("Veri çekme hatası:", error);
+            }
+            
+        });
+    });
+
+</script>

@@ -34,9 +34,9 @@ body {
 }
 
 a {
-    color: #00937C;
+    color: #00937C !important;
 }
 
     a:hover {
-        color: #02BDA8;
+        color: #02BDA8 !important;
     }

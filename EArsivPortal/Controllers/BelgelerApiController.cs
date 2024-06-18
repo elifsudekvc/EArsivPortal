@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using EArsivPortal.Services.Repositories;
 using EArsivPortal.Models;
 using YourNamespace.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EArsivPortal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BelgelerApiController : ControllerBase
     {
         private readonly IGenericRepository<Belge> _belgeRepository;

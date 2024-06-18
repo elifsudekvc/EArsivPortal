@@ -4,7 +4,11 @@
     ViewData["Title"] = "Kişisel Veriler";
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
-
+<style>
+    .btnSil{
+        color:white !important;
+    }
+</style>
 <h3>@ViewData["Title"]</h3>
 <div class="row">
     <div class="col-md-6">
@@ -16,7 +20,7 @@
             <button class="btn yesil mb-2" type="submit">İndir</button>
         </form>
         <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Sil</a>
+            <a id="delete" asp-page="DeletePersonalData" class="btn btnSil btn-danger">Sil</a>
         </p>
     </div>
 </div>
