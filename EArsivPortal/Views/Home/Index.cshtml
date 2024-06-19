@@ -3,7 +3,7 @@
 }
 
 <div class="container mt-5">
-    <!-- Delete Confirmation Modal -->
+    <!-- Delete Modal -->
     <div class="modal fade" id="deleteConfirmationModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -64,6 +64,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
         window.alert = function () {
@@ -179,6 +181,7 @@
             });
         });
 
+
         $(document).on('click', '.belge-detail', function (e) {
             e.preventDefault();
 
@@ -194,9 +197,12 @@
                         "<div class='modal-content'>" +
                         "<div class='modal-header'>" +
                         "<h5 class='modal-title'>Belge Detayı</h5>" +
-                        "<button type='button' class='close' data-dismiss='modal'>&times;</button>" +
+                        "<button id='downloadButton' class='btn yesil ml-2'><i class='bi bi-download'></i>  PDF Olarak İndir</button>" +
+                        "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>" +
+                        "<span aria-hidden='true'>&times;</span>" +
+                        "</button>" +
                         "</div>" +
-                        "<div class='modal-body position-relative'>" +
+                        "<div id='belgeDetail' class='modal-body position-relative'>" +
                         "<div class='invoice-watermark'>İMZASIZ TEST BELGESİ</div>" +
                         "<div class='invoice-header'>" +
                         "<div class='row'>" +
@@ -238,7 +244,6 @@
                         "<th>İskonto/Artırım Nedeni</th>" +
                         "<th>KDV Oranı</th>" +
                         "<th>KDV Tutarı</th>" +
-                        "<th>Diğer Vergiler</th>" +
                         "<th>Mal Hizmet Tutarı</th>" +
                         "</tr>" +
                         "<tr>" +
@@ -250,7 +255,6 @@
                         "<td>İskonto - %0,00</td>" +
                         "<td>%0,00</td>" +
                         "<td>0,0 TL</td>" +
-                        "<td></td>" +
                         "<td>" + belgeDetay.tutar.toFixed(2) + "</td>" +
                         "</tr>" +
                         "</table>" +
@@ -268,12 +272,33 @@
                     $(document).on('click', '.close', function () {
                         $('#belgeDetailModal').modal('hide');
                     });
+                    
                 },
                 error: function (error) {
                     console.error('Belge detayı getirme hatası:', error);
                 }
 
             });
+        });
+        $(document).on('click', '#downloadButton', function () {
+            var element = document.querySelector('#belgeDetail');
+
+            var opt = {
+                filename: 'belge.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // PDF Oluşturma ve Kaydetme
+            html2pdf()
+                .set(opt)
+                .from(element)
+                .toPdf()
+                .get('pdf')
+                .then(function (pdf) {
+                    pdf.save();
+                });
         });
     });
 </script>
