@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿
+using System.Linq.Expressions;
 
 namespace EArsivPortal.Services.Repositories
 {
@@ -14,7 +15,5 @@ namespace EArsivPortal.Services.Repositories
         Task AddAsync(T entity);
         //Kaydı siler
         Task RemoveAsync(T entity);
-        //Kaydı günceller
-        Task UpdateAsync(T entity);
     }
 }

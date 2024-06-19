@@ -3,7 +3,41 @@
 }
 
 <div class="container mt-5">
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteConfirmationModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Belgeyi Sil</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Silmek istediğinizden emin misiniz?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">Vazgeç</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton">Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h2>Belge Listesi</h2>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="startDate">Başlangıç Tarihi:</label>
+            <input type="date" class="form-control" id="startDate">
+        </div>
+        <div class="col-md-4">
+            <label for="endDate">Bitiş Tarihi:</label>
+            <input type="date" class="form-control" id="endDate">
+        </div>
+        <div class="col-md-4">
+            <label></label>
+            <button id="filterBtn" class="btn btn-primary mt-4">Filtrele</button>
+        </div>
+    </div>
+
+
     <table class="table table-bordered" id="belgeTable">
         <thead>
             <tr>
@@ -13,6 +47,10 @@
                 <th>Soyad</th>
                 <th>Düzenleme Tarihi</th>
                 <th>Fatura Tipi</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>İşlemler</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -20,9 +58,15 @@
         </tbody>
     </table>
 </div>
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css" rel="stylesheet">
+<link href="~/css/styles.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 <script>
     $(document).ready(function () {
+
         $.ajax({
             url: "https://localhost:7087/api/BelgelerApi",
             type: "GET",
@@ -31,29 +75,89 @@
                 var belgeTable = $("#belgeTable tbody");
                 belgeTable.empty();
                 data.forEach(function (belge) {
-                    console.log(belge);
                     var belgeDuzenlemeTarihi = new Date(belge.belgeDuzenlemeTarihi);
                     var formattedDate = belgeDuzenlemeTarihi.toLocaleDateString('tr-TR');
                     var formattedTime = belgeDuzenlemeTarihi.toLocaleTimeString('tr-TR', {
                         hour: '2-digit',
                         minute: '2-digit'
                     });
+
                     var row = "<tr>" +
                         "<td>" + belge.belgeNumarasi + "</td>" +
                         "<td>" + belge.vknTckn + "</td>" +
                         "<td>" + belge.ad + "</td>" +
                         "<td>" + belge.soyad + "</td>" +
                         "<td>" + formattedDate + "</td>" +
-                        "<td>" + (belge.faturaTipi ? belge.faturaTipi.tip : '') + "</td>" +
-                        "</tr>";
+                        "<td>" + belge.faturaTipiID + "</td>";
+                    // Sadece admin kullanıcılar için Sil düğmesi ekle
+                    if ($("#belgeTable th:contains('İşlemler')").length > 0) {
+                        row += "<td><button class='btn btn-danger btn-sm delete-button'>Sil</button></td>";
+                    }
+
+                    row += "</tr>";
                     belgeTable.append(row);
                 });
+                let table = new DataTable('#belgeTable', {
+                    responsive: true,
+                    "pageLength": 5,
+                    "lengthMenu": [[5, 10, 30, -1], [5, 10, 30, "Hepsi"]],
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "Tabloda herhangi bir veri mevcut değil",
+                        "info": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                        "infoEmpty": "Kayıt yok",
+                        "infoFiltered": "(_MAX_ kayıt içerisinden filtrelendi)",
+                        "infoPostFix": "",
+                        "thousands": ".",
+                        "lengthMenu": "Sayfada _MENU_ kayıt göster",
+                        "loadingRecords": "Yükleniyor...",
+                        "processing": "İşleniyor...",
+                        "search": "Ara:",
+                        "zeroRecords": "Eşleşen kayıt bulunamadı",
+                        "paginate": {
+                            "first": "İlk",
+                            "last": "Son",
+                            "next": "Sonraki",
+                            "previous": "Önceki"
+                        },
+                        "aria": {
+                            "sortAscending": ": artan sütun sıralamasını aktifleştir",
+                            "sortDescending": ": azalan sütun sıralamasını aktifleştir"
+                        },
+                    }
+                });
             },
+
             error: function (error) {
                 console.error("Veri çekme hatası:", error);
             }
-            
         });
-    });
 
+        $(document).on('click', '.delete-button', function () {
+            var row = $(this).closest('tr');
+            var belgeNumarasi = row.find('td:eq(0)').text();
+
+            $('#deleteConfirmationModal').modal('show');
+
+            $('#confirmDeleteButton').off('click').on('click', function () {
+                $.ajax({
+                    url: 'https://localhost:7087/api/BelgelerApi/' + belgeNumarasi,
+                    type: 'DELETE',
+                    success: function (result) {
+                        row.remove();
+                        $('#deleteConfirmationModal').modal('hide');
+                    },
+                    error: function (error) {
+                        console.error('Silme hatası:', error);
+                        $('#deleteConfirmationModal').modal('hide');
+                    }
+                });
+            });
+
+            $('#cancel').off('click').on('click', function () {
+                $('#deleteConfirmationModal').modal('hide');
+            });
+        });
+
+    });
 </script>

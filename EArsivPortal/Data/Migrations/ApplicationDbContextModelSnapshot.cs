@@ -17,7 +17,7 @@ namespace EArsivPortal.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "7.0.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -91,23 +91,6 @@ namespace EArsivPortal.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("EArsivPortal.Data.Document", b =>
-                {
-                    b.Property<int>("DocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"));
-
-                    b.Property<string>("DocumentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DocumentId");
-
-                    b.ToTable("Document");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -243,6 +226,81 @@ namespace EArsivPortal.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("YourNamespace.Models.Belge", b =>
+                {
+                    b.Property<int>("BelgeNumarasi")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BelgeNumarasi"));
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("BelgeDuzenlemeTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("BirimFiyat")
+                        .HasColumnType("decimal(18,6)");
+
+                    b.Property<int>("FaturaTipiID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MahalleSemt")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MalHizmet")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Miktar")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sehir")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Soyad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("VknTckn")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("BelgeNumarasi");
+
+                    b.HasIndex("FaturaTipiID");
+
+                    b.ToTable("Belgeler");
+                });
+
+            modelBuilder.Entity("YourNamespace.Models.FaturaTipi", b =>
+                {
+                    b.Property<int>("FaturaTipiID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FaturaTipiID"));
+
+                    b.Property<string>("Tip")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("FaturaTipiID");
+
+                    b.ToTable("FaturaTipleri");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -292,6 +350,22 @@ namespace EArsivPortal.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("YourNamespace.Models.Belge", b =>
+                {
+                    b.HasOne("YourNamespace.Models.FaturaTipi", "FaturaTipi")
+                        .WithMany("Belgeler")
+                        .HasForeignKey("FaturaTipiID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FaturaTipi");
+                });
+
+            modelBuilder.Entity("YourNamespace.Models.FaturaTipi", b =>
+                {
+                    b.Navigation("Belgeler");
                 });
 #pragma warning restore 612, 618
         }

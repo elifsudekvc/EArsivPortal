@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using EArsivPortal.Services.Repositories;
 using EArsivPortal.Models;
@@ -12,9 +13,9 @@ namespace EArsivPortal.Controllers
     [Authorize]
     public class BelgelerApiController : ControllerBase
     {
-        private readonly IGenericRepository<Belge> _belgeRepository;
+        private readonly IGenericRepository<Belgeler> _belgeRepository;
 
-        public BelgelerApiController(IGenericRepository<Belge> belgeRepository)
+        public BelgelerApiController(IGenericRepository<Belgeler> belgeRepository)
         {
             _belgeRepository = belgeRepository;
         }
@@ -38,7 +39,7 @@ namespace EArsivPortal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Belge belge)
+        public async Task<IActionResult> Create([FromBody] Belgeler belge)
         {
             if (belge == null)
             {
@@ -49,23 +50,6 @@ namespace EArsivPortal.Controllers
             return CreatedAtAction(nameof(GetById), new { id = belge.BelgeNumarasi }, belge);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Belge belge)
-        {
-            if (id != belge.BelgeNumarasi)
-            {
-                return BadRequest();
-            }
-
-            var existingBelge = await _belgeRepository.GetByIdAsync(id);
-            if (existingBelge == null)
-            {
-                return NotFound();
-            }
-
-            await _belgeRepository.UpdateAsync(belge);
-            return NoContent();
-        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

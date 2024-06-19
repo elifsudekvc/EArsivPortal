@@ -11,9 +11,8 @@ namespace YourNamespace.Models
         public int FaturaTipiID { get; set; }
 
         [StringLength(50)]
-        [Required]
         public string Tip { get; set; }
 
-        public virtual ICollection<Belge> Belgeler { get; set; }
+        public virtual ICollection<Belgeler> Belge { get; set; }
     }
 }

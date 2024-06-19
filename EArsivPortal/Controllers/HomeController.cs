@@ -19,7 +19,7 @@ namespace EArsivPortal.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult BelgeEkle()
         {
             return View();
         }
