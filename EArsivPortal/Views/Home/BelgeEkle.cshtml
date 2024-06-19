@@ -38,10 +38,10 @@
             <input type="number" step="0.000001" class="form-control" id="birimFiyat" name="birimFiyat" required>
         </div>
         <div class="form-group">
-            <label for="faturaTipiID">Fatura Tipi ID</label>
-            <input type="number" class="form-control" id="faturaTipiID" name="faturaTipiID" required>
+            <label for="faturaTipi">Fatura Tipi</label>
+            <input type="text" class="form-control" id="faturaTipi" name="faturaTipi" required>
         </div>
-        <button type="submit" class="btn btn-primary">Ekle</button>
+        <button type="submit" class="btn yesil">Ekle</button>
     </form>
 </div>
 
@@ -50,7 +50,7 @@
 <script>
     $(document).ready(function () {
         $('#belgeEkleForm').submit(function (e) {
-            e.preventDefault(); // prevent normal form submission
+            e.preventDefault();
 
             var formData = {
                 vknTckn: $('#vknTckn').val(),
@@ -59,9 +59,9 @@
                 sehir: $('#sehir').val(),
                 mahalleSemt: $('#mahalleSemt').val(),
                 malHizmet: $('#malHizmet').val(),
-                miktar: parseInt($('#miktar').val()), // convert to integer
-                birimFiyat: parseFloat($('#birimFiyat').val()), // convert to float
-                faturaTipiID: parseInt($('#faturaTipiID').val()) // convert to integer
+                miktar: parseInt($('#miktar').val()),
+                birimFiyat: parseFloat($('#birimFiyat').val()),
+                faturaTipi: $('#faturaTipi').val()
             };
 
             $.ajax({
@@ -70,12 +70,12 @@
                 contentType: 'application/json',
                 data: JSON.stringify(formData),
                 success: function (data) {
-                    alert('Belge successfully added!');
-                    window.location.href = '/Belgeler/List'; // Redirect to success page
+                    alert('Belge Eklendi.');
+                    window.location.href = '/Home/Index';
                 },
                 error: function (error) {
                     console.log('Error adding belge: ' + error.responseText);
-                    alert('Error adding belge: ' + error.responseText); // Show error message
+                    alert('Error adding belge: ' + error.responseText);
                 }
             });
         });

@@ -7,10 +7,6 @@
     "\\EArsivPortal\\Areas\\Identity\\Pages",
     "\\EArsivPortal\\Areas\\Identity\\Pages\\Account",
     "\\EArsivPortal\\Areas\\Identity\\Pages\\Account\\Manage",
-    "\\EArsivPortal\\Controllers",
-    "\\EArsivPortal\\Data",
-    "\\EArsivPortal\\Services",
-    "\\EArsivPortal\\Services\\Repositories",
     "\\EArsivPortal\\Views",
     "\\EArsivPortal\\Views\\Home",
     "\\EArsivPortal\\Views\\Shared"

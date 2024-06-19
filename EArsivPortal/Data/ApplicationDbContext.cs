@@ -12,16 +12,10 @@ namespace EArsivPortal.Data
         }
 
         public DbSet<Belgeler> Belgeler { get; set; }
-        public DbSet<FaturaTipi> FaturaTipleri { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Belgeler>()
-                .HasOne(b => b.FaturaTipi)
-                .WithMany(ft => ft.Belge)
-                .HasForeignKey(b => b.FaturaTipiID);
         }
 
     }

@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EArsivPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff76994829d6703784849d12762a8b1861578aba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+696913d491ccf2f1125ebc6c777cd4a101124a14")]
 [assembly: System.Reflection.AssemblyProductAttribute("EArsivPortal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EArsivPortal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

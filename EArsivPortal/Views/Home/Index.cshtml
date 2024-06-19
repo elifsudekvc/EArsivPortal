@@ -33,12 +33,11 @@
         </div>
         <div class="col-md-4">
             <label></label>
-            <button id="filterBtn" class="btn btn-primary mt-4">Filtrele</button>
+            <button id="filterBtn" class="btn yesil mt-4">Sorgula</button>
         </div>
     </div>
 
-
-    <table class="table table-bordered" id="belgeTable">
+    <table class="table datatable table-bordered" id="belgeTable">
         <thead>
             <tr>
                 <th>Belge Numarası</th>
@@ -58,6 +57,7 @@
         </tbody>
     </table>
 </div>
+
 <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css" rel="stylesheet">
 <link href="~/css/styles.css" rel="stylesheet" />
@@ -66,71 +66,91 @@
 <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 <script>
     $(document).ready(function () {
+        window.alert = function () {
+            try { console.log('alert prevented') } catch (e) { }
+        }
+        alert('test');
+        let table;
+        function fetchData(startDate, endDate) {
+            $.ajax({
+                url: "https://localhost:7087/api/BelgelerApi",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var belgeTable = $("#belgeTable tbody");
+                    belgeTable.empty();
+                    data.forEach(function (belge) {
+                        var belgeDuzenlemeTarihi = new Date(belge.belgeDuzenlemeTarihi);
+                        var formattedDate = belgeDuzenlemeTarihi.toLocaleDateString('tr-TR');
+                        var formattedTime = belgeDuzenlemeTarihi.toLocaleTimeString('tr-TR', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
 
-        $.ajax({
-            url: "https://localhost:7087/api/BelgelerApi",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                var belgeTable = $("#belgeTable tbody");
-                belgeTable.empty();
-                data.forEach(function (belge) {
-                    var belgeDuzenlemeTarihi = new Date(belge.belgeDuzenlemeTarihi);
-                    var formattedDate = belgeDuzenlemeTarihi.toLocaleDateString('tr-TR');
-                    var formattedTime = belgeDuzenlemeTarihi.toLocaleTimeString('tr-TR', {
-                        hour: '2-digit',
-                        minute: '2-digit'
+                        if ((startDate && endDate) &&
+                            (new Date(belge.belgeDuzenlemeTarihi) <= startDate || new Date(belge.belgeDuzenlemeTarihi) >= endDate)) {
+                            return;
+                        }
+
+                        var row = "<tr>" +
+                            "<td><a href='#' class='belge-detail' data-belge-id='" + belge.belgeNumarasi + "'>" + belge.belgeNumarasi + "</a></td>" +
+                            "<td>" + belge.vknTckn + "</td>" +
+                            "<td>" + belge.ad + "</td>" +
+                            "<td>" + belge.soyad + "</td>" +
+                            "<td>" + formattedDate + "</td>" +
+                            "<td>" + belge.faturaTipi + "</td>";
+                        // Sadece admin kullanıcılar için Sil düğmesi ekle
+                        if ($("#belgeTable th:contains('İşlemler')").length > 0) {
+                            row += "<td><button class='btn btn-danger btn-sm delete-button'>Sil</button></td>";
+                        }
+
+                        row += "</tr>";
+                        belgeTable.append(row);
                     });
 
-                    var row = "<tr>" +
-                        "<td>" + belge.belgeNumarasi + "</td>" +
-                        "<td>" + belge.vknTckn + "</td>" +
-                        "<td>" + belge.ad + "</td>" +
-                        "<td>" + belge.soyad + "</td>" +
-                        "<td>" + formattedDate + "</td>" +
-                        "<td>" + belge.faturaTipiID + "</td>";
-                    // Sadece admin kullanıcılar için Sil düğmesi ekle
-                    if ($("#belgeTable th:contains('İşlemler')").length > 0) {
-                        row += "<td><button class='btn btn-danger btn-sm delete-button'>Sil</button></td>";
-                    }
 
-                    row += "</tr>";
-                    belgeTable.append(row);
-                });
-                let table = new DataTable('#belgeTable', {
-                    responsive: true,
-                    "pageLength": 5,
-                    "lengthMenu": [[5, 10, 30, -1], [5, 10, 30, "Hepsi"]],
-                    language: {
-                        "decimal": "",
-                        "emptyTable": "Tabloda herhangi bir veri mevcut değil",
-                        "info": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
-                        "infoEmpty": "Kayıt yok",
-                        "infoFiltered": "(_MAX_ kayıt içerisinden filtrelendi)",
-                        "infoPostFix": "",
-                        "thousands": ".",
-                        "lengthMenu": "Sayfada _MENU_ kayıt göster",
-                        "loadingRecords": "Yükleniyor...",
-                        "processing": "İşleniyor...",
-                        "search": "Ara:",
-                        "zeroRecords": "Eşleşen kayıt bulunamadı",
-                        "paginate": {
-                            "first": "İlk",
-                            "last": "Son",
-                            "next": "Sonraki",
-                            "previous": "Önceki"
-                        },
-                        "aria": {
-                            "sortAscending": ": artan sütun sıralamasını aktifleştir",
-                            "sortDescending": ": azalan sütun sıralamasını aktifleştir"
-                        },
-                    }
-                });
-            },
+                    table = new DataTable('#belgeTable', {
+                        responsive: true,
+                        "pageLength": 5,
+                        "lengthMenu": [[5, 10, 30, -1], [5, 10, 30, "Hepsi"]],
+                        language: {
+                            "decimal": "",
+                            "emptyTable": "Tabloda herhangi bir veri mevcut değil",
+                            "info": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                            "infoEmpty": "Kayıt yok",
+                            "infoFiltered": "(_MAX_ kayıt içerisinden filtrelendi)",
+                            "infoPostFix": "",
+                            "thousands": ".",
+                            "lengthMenu": "Sayfada _MENU_ kayıt göster",
+                            "loadingRecords": "Yükleniyor...",
+                            "processing": "İşleniyor...",
+                            "search": "Ara:",
+                            "zeroRecords": "Eşleşen kayıt bulunamadı",
+                            "paginate": {
+                                "first": "İlk",
+                                "last": "Son",
+                                "next": "Sonraki",
+                                "previous": "Önceki"
+                            },
+                            "aria": {
+                                "sortAscending": ": artan sütun sıralamasını aktifleştir",
+                                "sortDescending": ": azalan sütun sıralamasını aktifleştir"
+                            },
+                        }
+                    });
 
-            error: function (error) {
-                console.error("Veri çekme hatası:", error);
-            }
+                },
+                error: function (error) {
+                    console.error("Veri çekme hatası:", error);
+                }
+            });
+        }
+        fetchData(null, null);
+        $("#filterBtn").on("click", function () {
+            var startDate = $("#startDate").val() ? new Date($("#startDate").val()) : null;
+            var endDate = $("#endDate").val() ? new Date($("#endDate").val()) : null;
+
+            fetchData(startDate, endDate);
         });
 
         $(document).on('click', '.delete-button', function () {
@@ -159,5 +179,101 @@
             });
         });
 
+        $(document).on('click', '.belge-detail', function (e) {
+            e.preventDefault();
+
+            var belgeNumarasi = $(this).data('belge-id');
+            $.ajax({
+                url: 'https://localhost:7087/api/BelgelerApi/' + belgeNumarasi,
+                type: 'GET',
+                dataType: 'json',
+                success: function (belgeDetay) {
+                    var modalContent =
+                        "<div class='modal fade' id='belgeDetailModal'>" +
+                        "<div class='modal-dialog modal-xl'>" +
+                        "<div class='modal-content'>" +
+                        "<div class='modal-header'>" +
+                        "<h5 class='modal-title'>Belge Detayı</h5>" +
+                        "<button type='button' class='close' data-dismiss='modal'>&times;</button>" +
+                        "</div>" +
+                        "<div class='modal-body position-relative'>" +
+                        "<div class='invoice-watermark'>İMZASIZ TEST BELGESİ</div>" +
+                        "<div class='invoice-header'>" +
+                        "<div class='row'>" +
+                        "<div class='col-md-6'>" +
+                        "<strong>Esk Yazılım</strong><br>" +
+                        "Mustafa Kemal Paşa Mahallesi No:6 Kapı No:200A<br>Kocasinan / Kayseri / Türkiye<br>" +
+                        "Tel: 5059284471<br>" +
+                        "Vergi Dairesi: Kocasinan" +
+                        "</div>" +
+                        "<div class='col-md-6 text-right'>" +
+                        "<strong>e-Arşiv Fatura</strong><br>" +
+                        "<img src='/Uploads/qrkod.png' alt='QR Code' class='w-25'>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "<div class='invoice-to'>" +
+                        "<strong>SAYIN</strong><br>" +
+                        "Ad: " + belgeDetay.ad + "<br>" +
+                        "Soyad: " + belgeDetay.soyad + "<br>" +
+                        "VKN/TCKN: " + belgeDetay.vknTckn + "<br>" +
+                        "Şehir: " + belgeDetay.sehir + "<br>" +
+                        "Mahalle/Semt: " + belgeDetay.mahalleSemt + "<br>" +
+                        "</div>" +
+                        "<table class='invoice-table'>" +
+                        "<tr>" +
+                        "<th>Fatura Tipi:</th>" +
+                        "<td>" + belgeDetay.faturaTipi + "</td>" +
+                        "<th>Belge Numarası:</th>" +
+                        "<td>" + belgeDetay.belgeNumarasi + "</td>" +
+                        "<th>Düzenlenme Tarihi:</th>" +
+                        "<td>" + new Date(belgeDetay.belgeDuzenlemeTarihi).toLocaleString('tr-TR') + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<th>Sıra No</th>" +
+                        "<th>Mal Hizmet</th>" +
+                        "<th>Miktar</th>" +
+                        "<th>Birim Fiyat</th>" +
+                        "<th>İskonto/Artırım Tutarı</th>" +
+                        "<th>İskonto/Artırım Nedeni</th>" +
+                        "<th>KDV Oranı</th>" +
+                        "<th>KDV Tutarı</th>" +
+                        "<th>Diğer Vergiler</th>" +
+                        "<th>Mal Hizmet Tutarı</th>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>1</td>" +
+                        "<td>" + belgeDetay.malHizmet + "</td>" +
+                        "<td>" + belgeDetay.miktar + "</td>" +
+                        "<td>" + belgeDetay.birimFiyat.toFixed(2) + " TL</td>" +
+                        "<td>0,00 TL</td>" +
+                        "<td>İskonto - %0,00</td>" +
+                        "<td>%0,00</td>" +
+                        "<td>0,0 TL</td>" +
+                        "<td></td>" +
+                        "<td>" + belgeDetay.tutar.toFixed(2) + "</td>" +
+                        "</tr>" +
+                        "</table>" +
+                        "<div class='invoice-footer'>" +
+                        "<strong>ETTN:</strong> 8hd9wer34r-f0c9-4dae-9b30-d73şg982nf" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+
+                    $('#belgeDetailModal').remove();
+                    $('body').append(modalContent);
+                    $('#belgeDetailModal').modal('show');
+                    $(document).on('click', '.close', function () {
+                        $('#belgeDetailModal').modal('hide');
+                    });
+                },
+                error: function (error) {
+                    console.error('Belge detayı getirme hatası:', error);
+                }
+
+            });
+        });
     });
 </script>

@@ -52,3 +52,39 @@ a {
         max-width:300px;
     }
 }
+
+.modal-body {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.invoice-header, .invoice-footer {
+    margin: 10px 0;
+}
+
+.invoice-table th, .invoice-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.invoice-title {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.invoice-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    color: rgba(255, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 0;
+}

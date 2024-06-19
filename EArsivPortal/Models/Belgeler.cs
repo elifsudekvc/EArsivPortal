@@ -12,9 +12,6 @@ namespace YourNamespace.Models
 
         public DateTime BelgeDuzenlemeTarihi { get; set; } = DateTime.Now;
 
-        [ForeignKey("FaturaTipiID")]
-        public int FaturaTipiID { get; set; }
-
         [StringLength(11)]
         public string VknTckn { get; set; }
 
@@ -41,6 +38,8 @@ namespace YourNamespace.Models
         [NotMapped]
         public decimal Tutar => Miktar * BirimFiyat;
 
-        public virtual FaturaTipi FaturaTipi { get; set; }
+        [StringLength(255)]
+        public string FaturaTipi { get; set; }
+
     }
 }

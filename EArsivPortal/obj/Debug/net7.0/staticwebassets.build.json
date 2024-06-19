@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HZnuzq3IEB7h5iNg7XhVF2Vtzb3/saFQJ3D5ZMj+Pp8=",
+  "Hash": "X79ABNe+BZhVCvJ4w/Ur6FhbI+KEaVTOGRc2XbUq2iA=",
   "Source": "EArsivPortal",
   "BasePath": "_content/EArsivPortal",
   "Mode": "Default",
@@ -2390,6 +2390,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\EArsivLogo.png"
+    },
+    {
+      "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\qrkod.png",
+      "SourceId": "EArsivPortal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\",
+      "BasePath": "_content/EArsivPortal",
+      "RelativePath": "Uploads/qrkod.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\qrkod.png"
     }
   ]
 }

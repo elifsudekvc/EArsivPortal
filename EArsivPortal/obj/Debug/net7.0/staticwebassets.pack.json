@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\Uploads\\EArsivLogo.png"
     },
     {
+      "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\qrkod.png",
+      "PackagePath": "staticwebassets\\Uploads\\qrkod.png"
+    },
+    {
       "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
