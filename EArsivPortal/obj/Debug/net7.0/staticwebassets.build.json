@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "X79ABNe+BZhVCvJ4w/Ur6FhbI+KEaVTOGRc2XbUq2iA=",
+  "Hash": "RrT0YZzSXj61ACN7LTRVafv9mzio/9vfqtY+ukhWWIw=",
   "Source": "EArsivPortal",
   "BasePath": "_content/EArsivPortal",
   "Mode": "Default",
@@ -2335,6 +2335,44 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
+      "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\lib\\qrcode.js",
+      "SourceId": "EArsivPortal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\",
+      "BasePath": "_content/EArsivPortal",
+      "RelativePath": "lib/qrcode.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\qrcode.js"
+    },
+    {
+      "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\lib\\qrcode.min.js",
+      "SourceId": "EArsivPortal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\",
+      "BasePath": "_content/EArsivPortal",
+      "RelativePath": "lib/qrcode.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\qrcode.min.js"
+    },
+    {
       "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\45a71c85-59c8-4f3b-8882-6a64cc5bf169.jpg",
       "SourceId": "EArsivPortal",
       "SourceType": "Discovered",
@@ -2354,12 +2392,12 @@
       "OriginalItemSpec": "wwwroot\\Uploads\\45a71c85-59c8-4f3b-8882-6a64cc5bf169.jpg"
     },
     {
-      "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\9da8ee7c-9bab-4cf9-b4d2-eaddd1b37885.jpg",
+      "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\a56ce4a4-abb2-45d4-b95a-4c73ebc0f238.png",
       "SourceId": "EArsivPortal",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\",
       "BasePath": "_content/EArsivPortal",
-      "RelativePath": "Uploads/9da8ee7c-9bab-4cf9-b4d2-eaddd1b37885.jpg",
+      "RelativePath": "Uploads/a56ce4a4-abb2-45d4-b95a-4c73ebc0f238.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2370,7 +2408,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Uploads\\9da8ee7c-9bab-4cf9-b4d2-eaddd1b37885.jpg"
+      "OriginalItemSpec": "wwwroot\\Uploads\\a56ce4a4-abb2-45d4-b95a-4c73ebc0f238.png"
     },
     {
       "Identity": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\EArsivLogo.png",

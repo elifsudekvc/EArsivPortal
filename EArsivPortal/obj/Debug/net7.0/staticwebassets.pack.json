@@ -9,12 +9,12 @@
       "PackagePath": "staticwebassets\\Uploads\\45a71c85-59c8-4f3b-8882-6a64cc5bf169.jpg"
     },
     {
-      "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\9da8ee7c-9bab-4cf9-b4d2-eaddd1b37885.jpg",
-      "PackagePath": "staticwebassets\\Uploads\\9da8ee7c-9bab-4cf9-b4d2-eaddd1b37885.jpg"
-    },
-    {
       "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\EArsivLogo.png",
       "PackagePath": "staticwebassets\\Uploads\\EArsivLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\a56ce4a4-abb2-45d4-b95a-4c73ebc0f238.png",
+      "PackagePath": "staticwebassets\\Uploads\\a56ce4a4-abb2-45d4-b95a-4c73ebc0f238.png"
     },
     {
       "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\Uploads\\qrkod.png",
@@ -259,6 +259,14 @@
     {
       "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\lib\\qrcode.js",
+      "PackagePath": "staticwebassets\\lib\\qrcode.js"
+    },
+    {
+      "Id": "C:\\Users\\eskvc\\OneDrive\\Masaüstü\\back end\\EArsivPortal\\EArsivPortal\\wwwroot\\lib\\qrcode.min.js",
+      "PackagePath": "staticwebassets\\lib\\qrcode.min.js"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.EArsivPortal.Microsoft.AspNetCore.StaticWebAssets.props",

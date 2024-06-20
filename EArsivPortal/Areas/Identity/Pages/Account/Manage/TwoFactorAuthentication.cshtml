@@ -18,7 +18,7 @@
             if (Model.RecoveryCodesLeft == 0)
             {
                 <div class="alert alert-danger">
-                    <strong>You have no recovery codes left.</strong>
+                    <strong>Hiç kurtarma kodunuz kalmadı.</strong>
                     <p>You must <a asp-page="./GenerateRecoveryCodes">yeni bir kurtarma kodu seti oluşturmak</a>  kurtarma kodu ile giriş yapmadan önce.</p>
                 </div>
             }
@@ -40,21 +40,21 @@
             if (Model.IsMachineRemembered)
             {
                 <form method="post" style="display: inline-block">
-                    <button type="submit" class="btn btn-primary">Bu tarayıcıyı unutun</button>
+                    <button type="submit" class="btn m-2 yesil">Bu tarayıcıyı unutun</button>
                 </form>
             }
-            <a asp-page="./Disable2fa" class="btn btn-primary">Disable 2FA</a>
-            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Kurtarma kodlarını sıfırlama</a>
+            <a asp-page="./Disable2fa" class="btn m-2 yesil">2FA'yı devre dışı bırak</a>
+            <a asp-page="./GenerateRecoveryCodes" class="btn m-2 yesil">Kurtarma kodlarını sıfırlama</a>
         }
 
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Kimlik Doğrulayıcı ekleme</a>
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn m-2 yesil">Kimlik Doğrulayıcı ekleme</a>
         }
         else
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn yesil">Kimlik doğrulayıcı uygulamasını ayarlama</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn yesil">Kimlik doğrulayıcı uygulamasını sıfırlama</a>
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn m-2 yesil">Kimlik doğrulayıcı uygulamasını ayarlama</a>
+            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn m-2 yesil">Kimlik doğrulayıcı uygulamasını sıfırlama</a>
         }
     }
     else

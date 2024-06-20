@@ -89,10 +89,16 @@
                             minute: '2-digit'
                         });
 
-                        if ((startDate && endDate) &&
-                            (new Date(belge.belgeDuzenlemeTarihi) <= startDate || new Date(belge.belgeDuzenlemeTarihi) >= endDate)) {
-                            return;
+                        if (startDate && endDate) {
+                            endDate.setHours(23, 59, 59, 999);
+
+                            var belgeDate = new Date(belge.belgeDuzenlemeTarihi);
+
+                            if (!(belgeDate >= startDate && belgeDate <= endDate)) {
+                                return;
+                            }
                         }
+
 
                         var row = "<tr>" +
                             "<td><a href='#' class='belge-detail' data-belge-id='" + belge.belgeNumarasi + "'>" + belge.belgeNumarasi + "</a></td>" +
@@ -119,7 +125,7 @@
                             "decimal": "",
                             "emptyTable": "Tabloda herhangi bir veri mevcut değil",
                             "info": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
-                            "infoEmpty": "Kayıt yok",
+                            "infoEmpty": "",
                             "infoFiltered": "(_MAX_ kayıt içerisinden filtrelendi)",
                             "infoPostFix": "",
                             "thousands": ".",
@@ -151,10 +157,9 @@
         $("#filterBtn").on("click", function () {
             var startDate = $("#startDate").val() ? new Date($("#startDate").val()) : null;
             var endDate = $("#endDate").val() ? new Date($("#endDate").val()) : null;
-
+            table.clear().draw();
             fetchData(startDate, endDate);
         });
-
         $(document).on('click', '.delete-button', function () {
             var row = $(this).closest('tr');
             var belgeNumarasi = row.find('td:eq(0)').text();
@@ -167,6 +172,7 @@
                     type: 'DELETE',
                     success: function (result) {
                         row.remove();
+                        location.reload();
                         $('#deleteConfirmationModal').modal('hide');
                     },
                     error: function (error) {
@@ -198,6 +204,7 @@
                         "<div class='modal-header'>" +
                         "<h5 class='modal-title'>Belge Detayı</h5>" +
                         "<button id='downloadButton' class='btn yesil ml-2'><i class='bi bi-download'></i>  PDF Olarak İndir</button>" +
+                        "<button id='printButton' class='btn yesil ml-2'><i class='bi bi-printer'></i>  Yazdır</button>" +
                         "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>" +
                         "<span aria-hidden='true'>&times;</span>" +
                         "</button>" +
@@ -279,7 +286,9 @@
                 }
 
             });
+
         });
+
         $(document).on('click', '#downloadButton', function () {
             var element = document.querySelector('#belgeDetail');
 
@@ -299,6 +308,25 @@
                 .then(function (pdf) {
                     pdf.save();
                 });
+            $('#belgeDetailModal').modal('show');
+            $(document).on('click', '.close', function () {
+                $('#belgeDetailModal').modal('hide');
+            });
+
         });
+        $(document).on('click', '#printButton', function () {
+            var element = document.getElementById('belgeDetail');
+
+            var originalContents = document.body.innerHTML;
+            var printContents = element.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            location.reload();
+
+        });
+
     });
 </script>

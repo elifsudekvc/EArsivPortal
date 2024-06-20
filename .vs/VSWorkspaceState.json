@@ -12,6 +12,6 @@
     "\\EArsivPortal\\Views\\Home",
     "\\EArsivPortal\\Views\\Shared"
   ],
-  "SelectedNode": "\\EArsivPortal\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\EArsivPortal\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
   "PreviewInSolutionExplorer": false
 }

@@ -27,6 +27,7 @@ body {
 }
     .yesil:hover {
         background-color: #02BDA8 !important;
+        color:white !important;
     }
 
 .title {
@@ -88,3 +89,19 @@ a {
     pointer-events: none;
     z-index: 0;
 }
+@media print {
+    .modal-dialog {
+        width: auto !important;
+        max-width: 100%;
+    }
+
+    .modal-content {
+        width: auto !important;
+        max-width: 100%;
+    }
+
+    .modal-body {
+        max-height: none !important;
+    }
+}
+
