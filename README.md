@@ -23,7 +23,7 @@ Uygulama sizi oturum açıldıktan 20 dakika sonra otomatik olarak atar. Uygulam
 +	Microsoft SQL Server
 +	ASP.NET Core MVC (.NET 7.0)
 +	Asp.Net Core Identity
-+	RESTful APİ
++	RESTful API
 +	Generic Repository pattern
 +	HTML, CSS, Bootstrap
 +	JavaScript, jQuery
@@ -47,7 +47,7 @@ Klonladığınız EArsivPortal dizinine gidin ve EArsivPortal.sln dosyasını se
 dotnet restore
 ```
 4.	Veritabanını Güncelleyin
-appsettings.json dosyasında veritabanı ayarlarının doğru yapılandırıldığından emin olun. Daha sonra, veritabanı şemasını ayarlamak için bekleyen göçleri uygulayın:
+appsettings.json dosyasında veritabanı ayarlarının doğru yapılandırıldığından emin olun.
 ```bash
 dotnet ef database update
 ```
@@ -57,7 +57,7 @@ dotnet ef database update
 dotnet run
 ```
 
-###Ekran görüntüleri ve APİ çıktısı
+###  Ekran görüntüleri
 ![Ekran görüntüsü 2024-06-20 192320](https://github.com/elifsudekvc/EArsivPortal/assets/130573532/3dfa547a-c219-496e-aec4-87588ec84a65)
 JSON bu şekildedir. Sadece giriş yapan kişiler tarafından görüntülenecek şekilde gizlenmiştir.
 
